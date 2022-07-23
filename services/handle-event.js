@@ -22,6 +22,7 @@ exports.handleEvent = (event) => {
                 case "text":
                    // console.log('Text message');
                    service.handleMessage(event);
+                   break;
                 case "sticker":
                    // console.log('Sticker message');
                     break;
@@ -29,7 +30,6 @@ exports.handleEvent = (event) => {
                    // console.log('Image message');
                 default:
                     throw new Error("Unknow message "+JSON.stringify(event.message.type));
-                   
             }
             break;
         case "postback":
