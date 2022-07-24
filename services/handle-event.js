@@ -33,7 +33,7 @@ exports.handleEvent = (event) => {
             }
             break;
         case "postback":
-            console.log('postback');
+            console.log('ID:'+ event.postback.data);
             break;
     
         default:
