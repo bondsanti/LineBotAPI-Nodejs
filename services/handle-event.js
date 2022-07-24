@@ -1,5 +1,6 @@
 const config = require('../config/line');
 const service = require('./handle-message');
+const { handlePostback } = require('./handle-postback');
 
 // event handler
 exports.handleEvent = (event) => {
@@ -23,22 +24,23 @@ exports.handleEvent = (event) => {
                    // console.log('Text message');
                    service.handleMessage(event);
                    break;
-                case "sticker":
-                   // console.log('Sticker message');
+                case "follow":
+                    console.log('New Follow'+ event.source.userId);
                     break;
-                case "image":
-                   // console.log('Image message');
+                case "unfollow":
+                    console.log('UnFollow'+ event.source.userId);
+                    break;
                 default:
                     throw new Error("Unknow message "+JSON.stringify(event.message.type));
             }
             break;
         case "postback":
-            console.log('ID:'+ event.postback.data);
+            //console.log('ID:'+ event.postback.data);
+           handlePostback(event);
             break;
-    
         default:
             throw new Error("Unknow event "+JSON.stringify(event));
-           
+         
     }
   }
 
