@@ -36,5 +36,12 @@ router.get('/deleterichmenu', async function(req, res, next) {
 });
 
 
+router.get('/auth/callback', async function(req, res, next) {
+  //console.log(req.query.code);
+  //get access token
+  return res.status(200).json({message:'เข้าสู่ระบบสำเร็จ'});
+});
+
+
 
 module.exports = router;
