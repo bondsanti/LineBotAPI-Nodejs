@@ -14,7 +14,12 @@ exports.sendFlexMySQL = async () =>{
 let bubbles =[];
 let promotions = response.data;
 
+
+
 bubbles = promotions.map((item)=>{
+  let postbackType = { type: 'figer' };
+  let newItem = {...postbackType, ...item};
+
     return {
         "type": "bubble",
         "hero": {
@@ -63,7 +68,7 @@ bubbles = promotions.map((item)=>{
               "action": {
                 "type": "postback",
                 "label": "ดูเพิ่มเติม",
-                "data": JSON.stringify(item),
+                "data": JSON.stringify(newItem),
               }
             }
           ]
