@@ -1,9 +1,11 @@
 const express = require('express');
 const router = express.Router();
-const { createRichmenu } = require('../services/create-richmenu');
-const { deleteRichmenu } = require('../services/delete-richmenu');
+const axios = require('axios').default;
+const jwt_decode = require('jwt-decode');
 
 const db = require('../config/mysql');
+const { createRichmenu } = require('../services/create-richmenu');
+const { deleteRichmenu } = require('../services/delete-richmenu');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -38,8 +40,27 @@ router.get('/deleterichmenu', async function(req, res, next) {
 
 router.get('/auth/callback', async function(req, res, next) {
   //console.log(req.query.code);
+
   //get access token
-  return res.status(200).json({message:'เข้าสู่ระบบสำเร็จ'});
+  const params = new URLSearchParams({
+  grant_type:'authorization_code',
+  code:req.query.code,
+  redirect_uri:process.env.BASE_URL +"/auth/callback",
+  client_id:process.env.LOGIN_LINE_ID,
+  client_secret:process.env.LOGIN_LINE_SECRET
+  });
+
+  const response = await axios.post('https://api.line.me/oauth2/v2.1/token',params,{
+      headers:{"Content-Type":"application/x-www-form-urlencoded"}
+  });
+
+
+  //get profile from id token
+  const user = jwt_decode(response.data.id_token);
+
+  return res.status(200).json({
+    user:user,
+    response: response.data});
 });
 
 
