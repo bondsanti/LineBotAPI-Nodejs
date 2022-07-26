@@ -17,7 +17,19 @@ exports.sendText =  (event) =>{
             "packageId": "6136",
             "stickerId": "10551378"
           } ;
+    }else if(receiveMsg==='lift'){
+            BotMsg = { type: 'text', text: 'https://liff.line.me/1657328935-knwvALPO' };
+    
+    }else if(receiveMsg==='แจ้งซ่อมสำเร็จ'){
 
+        BotMsg = [
+            { type: 'text', text: 'ขอบคุณที่แจ้งซ่อมเข้ามา..\n กรุณารอสักครู่' },
+            { type: 'text', text: 'IT Support กำลังไปหาน้าาา!!'},
+            { type: 'sticker', "packageId": "789",
+            "stickerId": "10888"},
+        ];
+
+         
     }else{
         BotMsg = { type: 'text', text: 'พิมพ์ข้อความใหม่ นะครับ' };
     }
