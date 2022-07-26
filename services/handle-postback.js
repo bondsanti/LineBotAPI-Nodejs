@@ -9,8 +9,9 @@ exports.handlePostback = (event) => {
     if (data.type === 'figer') {
         // console.log(data.id); 
         msg = [
-            { type: 'text', text: 'รายละเอียดโปรโมชั่นนี้' },
-            { type: 'text', text: 'ราคา: ' + data.price },
+            { type: 'text', text: 'เข้า-ออก งาน' },
+            { type: 'text', text: 'เข้า: ' + data.checkin },
+            { type: 'text', text: 'ออก: ' + data.checkout },
         ];
     }
 

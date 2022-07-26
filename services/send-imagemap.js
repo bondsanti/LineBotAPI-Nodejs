@@ -20,14 +20,14 @@ exports.sendImageMap = ()=>{
             "height": 521
           },
           "externalLink": {
-            "linkUri": "https://google.com",
+            "linkUri": "https://liff.line.me/1657328935-knwvALPO",
             "label": "ดูวีดีโอทั้งหมด"
           }
         },
         "actions": [
           {
             "type": "uri",
-            "linkUri": "https://youtube.com/",
+            "linkUri": "https://liff.line.me/1657328935-knwvALPO",
             "area": {
               "x": 0,
               "y": 521,

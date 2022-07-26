@@ -14,15 +14,15 @@ router.get('/', function(req, res, next) {
 
 router.get('/getfiger', async function(req, res, next) {
   const conn = await db.connectionMySQL();
-  const [rows] = await conn.query("select * from pro_room order by id desc limit 12");
-  //const [rows] = await conn.query("select * from scanfiger order by id desc limit 12");
+  //const [rows] = await conn.query("select * from pro_room order by id desc limit 12");
+  const [rows] = await conn.query("select * from scanfiger order by id desc limit 12");
   return res.status(200).json(rows);
 });
 
 router.get('/getfiger/:id', async function(req, res, next) {
   const conn = await db.connectionMySQL();
-  const [rows] = await conn.query("select * from pro_room where id =?",[req.params.id]);
-  //const [rows] = await conn.query("select * from scanfiger where id =?",[req.params.id]);
+  //const [rows] = await conn.query("select * from pro_room where id =?",[req.params.id]);
+  const [rows] = await conn.query("select * from scanfiger where id =?",[req.params.id]);
   return res.status(200).json(rows[0]);
 });
 
@@ -61,6 +61,18 @@ router.get('/auth/callback', async function(req, res, next) {
   return res.status(200).json({
     user:user,
     response: response.data});
+});
+
+
+router.post('/create', async function(req, res, next) {
+  console.log(req.body);
+  const conn = await db.connectionMySQL();
+  const [result] = await conn.query("INSERT INTO tb_liff SET ?", req.body);
+
+  return res.status(200).json({
+      pId: result.insertId, //last insert id
+      message: 'แจ้งซ่อมสำเร็จ'
+  });
 });
 
 

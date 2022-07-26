@@ -20,14 +20,14 @@ app.use(logger('dev'));
 
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', indexRouter); //  http://localhost:4000
+
 app.use('/line',lineRouter); // http://localhost:4000/line/callback
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
-
+app.use('/', indexRouter); //  http://localhost:4000
 
 
 module.exports = app;
